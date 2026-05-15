@@ -1,8 +1,5 @@
-interface Project {
-  id: string;
-  name: string;
-  color: string;
-}
+import { getBaseUrl } from '@/lib/api';
+import type { Project } from '@/lib/db';
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -10,7 +7,7 @@ interface Props {
 
 export default async function ProjectPage({ params }: Props) {
   const { id } = await params;
-  const res = await fetch(`http://localhost:4000/projects/${id}`, {
+  const res = await fetch(`${getBaseUrl()}/api/projects/${id}`, {
     cache: 'no-store',
   });
 
